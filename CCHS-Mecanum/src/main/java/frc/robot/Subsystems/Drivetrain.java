@@ -33,4 +33,8 @@ public class Drivetrain extends SubsystemBase {
     public Command drive(DoubleSupplier x, DoubleSupplier y, DoubleSupplier z) {
         return run(()-> drivetrain.driveCartesian(x.getAsDouble(), y.getAsDouble(), z.getAsDouble()));
     }
+
+    public Command mobilityAuto() {
+        return runOnce(()-> drive(()-> 0, ()-> 0.5, ()-> 0).withTimeout(2));
+    }
 }
